@@ -1,0 +1,476 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Git and Github | eSpace</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>eSpace</h1>
+					<h3>Git and Github</h3>
+				</section>
+				<section>
+					<h3>Agenda</h3>
+					<ul>
+						<li class="fragment">Version Control</li>
+						<li class="fragment">Git & Github</li>
+						<li class="fragment">Installation</li>
+						<li class="fragment">Reading</li>
+						<li class="fragment">Modifying</li>
+						<li class="fragment">External Links</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Version Control</h3>
+					<section>Vesrion Control (aka Source Control, Revision Control) let's you track your files over time</section>
+					<section>Version contol is like having a giant Undo button for your project </section>
+					<section>It makes it easy to save versions of your files at different points in time</section>
+					<section>you can also restore previous versions and compare different versions</section>
+					<section>it also makes it a lot easier to collaborate with other people (No more .zip files)</section>
+					<section>Version Control examples:  CVS (Concurrent Version Systems) , SVN (Subversion), Mercurial (hg) and  Git</section>
+					<section>Handling files without Version Control?</section>
+				</section>
+				<section>
+					<h3>A Good VCS does the following</h3> <!-- Refer to Lesson 1.9/1.10 -->
+					<ul>
+						<li class="fragment">Backup and Restore.</li>
+						<li class="fragment">Synchronization.</li>
+						<li class="fragment">Short-term undo.</li>
+						<li class="fragment">Long-term undo.</li>
+						<li class="fragment">Track Changes.</li>
+						<li class="fragment">Track Ownership.</li>
+						<li class="fragment">Sandboxing</li>
+						<li class="fragment">Branching and merging.</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Git</h3>
+					<section>Git: version control system</section>
+					<section>Developed by Linus Torvalds</section>
+					<section>Git allows users to save checkpoints when they choose, making it more convenient to save checkpoint per logical change</section>
+				</section>
+				<section>
+					<h3>Git: Installing</h3>
+					<section data-markdown>
+						<script type="text/template">
+							#### Windows
+
+							* Download the latest [Git for Windows installer](https://git-for-windows.github.io/).
+							
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							#### Debian / Ubuntu
+
+							```
+							$ sudo apt-get update
+							$ sudo apt-get install git
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							#### post configuration
+
+							```
+							$ git config --global user.name "Your Username"
+							$ git config --global user.email "mail@mailserver.org"
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<h3>Git Repository</h3>
+					<section>When you work on a project, you'll often have multiple files that you want to track together.</section>
+					<section>Git calls such a collection of files a repository.</section>
+				</section>
+				<section>
+					<h3>Git clone</h3>
+					<section>Git has a command allowing you to copy an entire repository from one computer to another</section>
+					<section>The command is called git clone because it creates a clone of the repository.</section>
+					<section data-markdown>
+						<script type="text/template">
+							Type git clone followed by a URL to the other repository
+
+							```
+							$ git clone REPOSITORY_URL
+							```
+						</script>
+					</section>
+					<section>Git can work offline, so after cloning a repository, you don't actually need an internet connection</section>
+				</section>
+				<section>
+					<h3>Git Commits</h3>
+					<section>Git allows user to create checkpoints of the code/files manually</section>
+					<section>Git's system makes it much more likely that each individual version represent a logical change.</section>
+					<section>In Git terminology, these user-created checkpoints are called commits.</section>
+					<section>Commits are the basic building blocks of Git, each one representing a version of the content at one point in time.</section>
+					<section>A commit is a snapshot of every file in your repository at the time you choose to make the commit.</section>
+					<section>
+						So for example, this is the fourth commit in a repository in which you have files a, b, and c
+						If you've only changed file a in this fourth commit, then files b and c will be identical between commits 4 and 3
+					</section>
+					<section>Git requires the user to supply commit message each time a commit is created.</section>
+					<section>This makes looking through old versions much more useful, assuming that the user supplied a useful commit message.</section>
+				</section>
+				<section>
+					<h3>Listing Commits</h3>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							git log
+							```
+						</script>
+					</section>
+					<section>
+						gets every commit that's ever been made, starting with the most recent.	each commit has an ID, an author, a date, and a message associated with it.
+					</section>
+					<section>
+						ID is sort of like a serial number.
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							git commit --stats
+							```
+						</script>
+					</section>
+					<section>
+						gives some statistics about which files have changed in each commit.
+					</section>
+				</section>
+				<section>
+					<h3>Git Diff</h3>
+					<section>git diff can compare different versions of a file within git</section>
+					<section>use git diff to see the difference between these two commits.</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							git diff OLD_COMMIT NEW_COMMIT
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<h3>Git Checkout</h3>
+					<section>we can also temporarily change our files back to how they were at the time of any commit.</section>
+					<section>This is called a git checkout</section>
+					<section data-markdown>
+						<script type="text/template">
+							```
+							git checkout COMMIT_ID
+							```
+						</script>
+					</section>
+					<section>
+						In git, checking out a commit means resetting all of your files to how they were at the time that commit was made.
+					</section>
+					<section>One reason to do a checkout might be, if a bug was introduced, but you're not sure which commit introduced it.</section>
+				</section>
+				<section>
+					<h3>Making Changes</h3>
+					<section data-markdown>
+						<script type="text/template">
+							### git Status
+							Shows which files have changed since the last commit.
+							```
+							git status
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<h3>Git Diff</h3>
+					<section>git diff command also can be used to see changes made to file(s) in the repositorty</section>
+					<section>calling git diff directly shows all the changes made to all files</section>
+					<section>It can also be called with one or more files as argument, to show only changes made to passed file(s)</section>
+				</section>
+				<section>
+					<h3>Git Add</h3>
+					<section>Used to to add whatever files from repository in order to include them in the next commit</section>
+					<section>It is passed file(s) to add them</section>
+					<section data-markdown>
+						<script type="text/template">
+							
+							```
+							git add file1 file2 file3
+							```
+						</script>
+					</section>
+					<section>use git add . to add all changed files</section>
+					<section data-markdown>
+						<script type="text/template">
+							
+							```
+							git add .
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<h3>Adding Commit</h3>
+					<section>To add commit, use git add command</section>
+					<section data-markdown>
+						<script type="text/template">
+							
+							```
+							git commit
+							```
+						</script>
+					</section>
+					<section>This will open an editor to write your commit message in it</section>
+					<section data-markdown>
+						<script type="text/template">
+						Or you can use -m parameter directly
+						```
+						git commit -m "Commit Message"
+						```
+						</script>
+					</section>
+					<section>
+						use git log to view your last commit
+					</section>
+				</section>
+				<section>
+					<h3>A little of details</h3>
+					<section>
+						Git has three Stages: working directory, staging area, and the git directory
+					</section>
+					<section>
+						The Git directory (aka repositroy) is where Git stores the metadata and object database for your project.
+					</section>
+					<section>
+						This is the most important part of Git, and it is what is copied when you clone a repository from another computer.
+					</section>
+					<section>
+						The working tree is a single checkout of one version of the project. These files are pulled out of the compressed database in the Git directory and placed on disk for you to use or modify.
+					</section>
+					<section>
+						The staging area is a file, generally contained in your Git directory, that stores information about what will go into your next commit. It’s sometimes referred to as the “index”, but it’s also common to refer to it as the staging area.
+					</section>
+					<section>
+						This chart describes the relation between the three stages.
+						<div style="background-color: #FFFFFF">
+							<img src="images/gitWorkflow.jpg.png">
+						</div>
+					</section>
+				</section>
+				<section>
+					<h3>Undoing Changes</h3>
+					<section>
+						undoing changes in Git uses several commands, dependent on the stage the changes to undo resides: 
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						use git reset HEAD^n to undo last n commits from the Git directory to the working directory
+						```
+						git reset HEAD^1
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						use git reset HEAD file(s) to undo adding Files from the Staging area
+						```
+						git reset HEAD file1 file2
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						use git checkout file(s) to revert file(s) changes in the working directory
+						```
+						git checkout file1 file2
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						use git reset HEAD --hard file(s) to undo adding Files from the Staging area and also revert changes
+						```
+						git reset HEAD --hard file1 file2
+						```
+						</script>
+					</section>
+				</section>
+				<section>
+					<h3>Branches</h3>
+					<section>Git stores a branch as a reference to a commit.</section>
+					<section>Branches are just a pointers or labels to commits</section>
+				</section>
+				<section>
+					<h3>Branch Commands</h3>
+					<section data-markdown>
+						<script type="text/template">
+						Create a branch
+						```
+						git branch new_branch
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						list branches
+						```
+						git branch [-a]
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						switch to branch x
+						```
+						git checkout x
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						Create a new branch and switch to it
+						```
+						git checkout -b new_branch
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						Merging a branch new_branch from sync branch sync_branch
+						```
+						git merge new_branch
+						```
+						</script>
+					</section>
+					<section>
+						<img src="images/TypicalMerge.png">
+					</section>
+				</section>
+				<section>
+					<h3>Collaboration: Github</h3>
+					<section>Github: a code sharing and collaboration platform</section>
+					<section><a href="https://github.com/">https://github.com/</a></section>
+					<section>Platforms like Github and Bitbucket are used to share and collaborate git repositories</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+						Cloning a git Repository to your local machine
+						```
+						git clone HTTPS/SSH
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						pulling remote branch, it's like syncing and merging a remote branch into local branch
+						```
+						git pull remote_branch
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						pushing local commits to remote branch
+						```
+						git push remote_branch
+						```
+						</script>
+					</section>
+				</section>
+				<section>
+					<h3>Pull Requests</h3>
+					<section>
+						A feature that makes it easier for developers to collaborate
+					</section>
+					<section>
+						Supported by Github and Bitbucket
+					</section>
+					<section>
+						They provide a user-friendly web interface for discussing proposed changes before integrating them into the official project.
+					</section>
+				</section>
+				<section>
+					<h3>Making a git repository</h3>
+					<section>Repositories are just normal directories on your machine</section>
+					<section>The only real difference is that git repositories store a bunch of metadata about the history of the repository since it was created.</section>
+					<section data-markdown>
+						<script type="text/template">
+						You can start tracking your folder/files by running git init
+						```
+						git init
+						```
+						</script>
+					</section>
+					<section>You can either run this in an empty directory and create files later or create the repository in a directory that already contains files.</section>
+					<section>Git by default does not add any files in the tracked folder</section>
+					<section>
+						This is because you might not want to commit everything in the directory, and
+					</section>
+					<section>
+						Another reason may be that you wouldn't be able to write your own commit message if Git created the commit for you.
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						specify the remote repository url (in order to push and sync later)
+						```
+						git remote add NAME URL
+						```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						list remote connections
+						```
+						git remote [-v]
+						```
+						</script>
+					</section>
+				</section>
+				<section>
+					<h3>Useful Links/Resources</h3>
+					<ul>
+						<li class="fragment"><a href="https://www.atlassian.com/git">Atlassian Git Tutorial</a></li>
+						<li class="fragment"><a href="https://www.udacity.com/cours/how-to-use-git-and-github--ud775">Udacity's Git course</a></li>
+						<li class="fragment"><a href="https://git-scm.com/book/en/v2/Getting-Started-Git-Basics">Git Getting Started</a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+		
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
